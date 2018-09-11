@@ -123,13 +123,13 @@ curl \
 | 参数名 | 类型 | 说明 |
 | - | - | - |
 | `success` |  `boolean` | 请求是否成功 |
-| `coolDownTimeout` |  `integer` | 发布该评论后需要等待的冷却时间，长度为秒。 |
+| `coolDownTimeout` |  `integer` | 发布该评论后需要等待的冷却时间，长度为秒。<br>如果 API 服务端指定不需要冷却，值则为 0 及以下。 |
 | `content` |  `object` | 刚才提交的评论详情 |
 | `content/id` |  `integer` | 评论在数据库中的 ID |
 | `content/parent` |  `integer` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
 | `content/birth` |  `string` | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
 | `content/editToken` |  `string` | 用于编辑或删除该评论的密钥 |
-| `content/editTimeout` |  `integer` | 用于编辑或删除该评论的密钥的过期时间，长度为秒。 |
+| `content/editTimeout` |  `integer` | 用于编辑或删除该评论的密钥的过期时间，长度为秒。<br>如果 API 服务端指定密钥不会过期，值则为 0 及以下。 |
 | `content/name` |  `string` 或 `null` | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言 |
 | `content/email` |  `string` | 评论者留下的电子邮箱地址 |
 | `content/website` |  `string` 或 `null` | 评论者留下的个人主页地址 |
