@@ -134,3 +134,44 @@ curl \
 | `content/email` |  `string` | 评论者留下的电子邮箱地址 |
 | `content/website` |  `string` 或 `null` | 评论者留下的个人主页地址 |
 | `content/content` |  `string` | 评论内容 |
+
+## 编辑评论
+
+地址：`/v1/edit`
+
+为 JSON 格式，具体信息如下：
+
+| 参数名 | 类型 | 必需 | 说明 | 最大 UTF-8 字节数 |
+| - | - | - | - | - |
+| `url` | `string` | 是 | 要修改的评论所在的文章的 URL | |
+| `id` | `integer` | 是 | 要修改的评论的 ID | |
+| `token` | `string` | 是 | 评论的修改 / 删除密钥 | |
+| `content` | `string` | 是 | 评论内容 | 2048 |
+
+### 返回参数
+
+为 JSON 格式，具体信息如下：
+
+| 参数名 | 类型 | 说明 |
+| - | - | - |
+| `success` |  `boolean` | 请求是否成功 |
+
+## 删除评论
+
+地址：`/v1/delete`
+
+为 JSON 格式，具体信息如下：
+
+| 参数名 | 类型 | 必需 | 说明 | 最大 UTF-8 字节数 |
+| - | - | - | - | - |
+| `url` | `string` | 是 | 要删除的评论所在的文章的 URL | |
+| `id` | `integer` | 是 | 要删除的评论的 ID | |
+| `token` | `string` | 是 | 评论的修改 / 删除密钥 | |
+
+### 返回参数
+
+为 JSON 格式，具体信息如下：
+
+| 参数名 | 类型 | 说明 |
+| - | - | - |
+| `success` |  `boolean` | 请求是否成功 |
