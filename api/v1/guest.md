@@ -18,7 +18,7 @@
 | 参数名 | 类型 | 说明 |
 | - | - | - |
 | `success` | boolean | 请求是否成功 |
-| `api_version` | number | API 版本。目前只有 `1`。 |
+| `api_version` | integer | API 版本。目前只有 `1`。 |
 
 ## 列出评论
 
@@ -43,18 +43,20 @@
 | `locked` | boolean | 评论是否被锁定 |
 | `content` | array | 评论串内容 |
 
+如果数据库中没有所对应的评论串，则返回 `content` 为空，`name` 为用户提交的 `url` 的值，`locked` 为 `false` 的返回值。
+
 `content` 各项的具体信息如下：
 
 | 每项参数名 | 类型 | 说明 |
 | - | - | - |
-| `id` | number | 评论在数据库中的 ID |
-| `name` | string 或 null | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言，同时 `website` 与 `email_hashed` 将始终是 `null`。 |
-| `website` | string 或 null | 评论者留下的个人主页地址 |
-| `email_hashed` | string 或 null | 评论者留下的电子邮箱地址的 MD5 散列。该值用于在评论列表中展示评论者的 [Gravatar](https://gravatar.com/) 头像 |
-| `parent` | number | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
-| `birth` | string | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
-| `content` | string 或 null | 评论内容 |
-| `by_admin` | boolean | 是否为管理员发布 |
+| `id` | `integer` | 评论在数据库中的 ID |
+| `name` | `string` 或 `null` | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言，同时 `website` 与 `email_hashed` 将始终是 `null`。 |
+| `website` | `string` 或 `null` | 评论者留下的个人主页地址 |
+| `email_hashed` | `string` 或 `null` | 评论者留下的电子邮箱地址的 MD5 散列。该值用于在评论列表中展示评论者的 [Gravatar](https://gravatar.com/) 头像 |
+| `parent` | `number` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
+| `birth` | `string` | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
+| `content` | `string` | 评论内容 |
+| `by_admin` | `boolean` | 是否为管理员发布 |
 
 #### 示例
 
@@ -95,3 +97,40 @@ curl \
     ]
 }
 ```
+
+## 提交评论
+
+地址：`/v1/submit`
+
+为 JSON 格式，具体信息如下：
+
+| 参数名 | 类型 | 必需 | 说明 | 最大 UTF-8 字节数 |
+| - | - | - | - | - |
+| `title` | `string` | 是 | 要评论的文章的标题 | |
+| `url` | `string` | 是 | 要评论的文章的 URL | |
+| `parent` | `string` | 否 | 要回复的已有的评论 ID。如果是发布一篇新评论则不应当提交该参数 | |
+| `name` | `string` | 否 | 评论作者的昵称。如果不指定，则会被认为是匿名评论 | 32 |
+| `email` | `string` | 是 | 评论作者的电子邮箱地址，用来展示 Gravatar 头像与接收提醒邮件（如果 `receiveEmail` 为 `true`）。<br>匿名评论也需要提交该参数，但其电子邮箱地址的 MD5 值将不会被公开输出。 | 255 |
+| `website` | `string` | 否 | 评论作者的个人主页。<br>匿名评论可以提交该参数，但个人主页地址将不会被公开输出。 | 64 |
+| `content` | `string` | 是 | 评论内容。 | 2048 |
+| `receiveEmail` | `boolean` | 是 | 是否在评论得到回复时接收电子邮件提醒。 | |
+| `responseKey` | `string` | 是 / 不允许 | reCAPTCHA v3 的验证结果密钥。<br>如果 API 服务端指定开启 reCAPTCHA v3 验证，则必须提交有效值；反之，不允许提交该参数。 | |
+
+### 返回参数
+
+为 JSON 格式，具体信息如下：
+
+| 参数名 | 类型 | 说明 |
+| - | - | - |
+| `success` |  `boolean` | 请求是否成功 |
+| `coolDownTimeout` |  `integer` | 发布该评论后需要等待的冷却时间，长度为秒。 |
+| `content` |  `object` | 刚才提交的评论详情 |
+| `content/id` |  `integer` | 评论在数据库中的 ID |
+| `content/parent` |  `integer` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
+| `content/birth` |  `string` | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
+| `content/editToken` |  `string` | 用于编辑或删除该评论的密钥 |
+| `content/editTimeout` |  `integer` | 用于编辑或删除该评论的密钥的过期时间，长度为秒。 |
+| `content/name` |  `string` 或 `null` | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言 |
+| `content/email` |  `string` | 评论者留下的电子邮箱地址 |
+| `content/website` |  `string` 或 `null` | 评论者留下的个人主页地址 |
+| `content/content` |  `string` | 评论内容 |
