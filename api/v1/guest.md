@@ -17,8 +17,8 @@
 
 | 参数名 | 类型 | 说明 |
 | - | - | - |
-| `success` | boolean | 请求是否成功 |
-| `api_version` | integer | API 版本。目前只有 `1`。 |
+| `success` | `boolean` | 请求是否成功 |
+| `api_version` | `integer` | API 版本。目前只有 `1`。 |
 
 ## 列出评论
 
@@ -30,7 +30,7 @@
 
 | 参数名 | 类型 | 必需 | 说明 |
 | - | - | - | - |
-| `url` | string | 是 | 评论串所对应的页面地址 |
+| `url` | `string` | 是 | 评论串所对应的页面地址 |
 
 ### 返回参数
 
@@ -38,10 +38,10 @@
 
 | 参数名 | 类型 | 说明 |
 | - | - | - |
-| `success` | boolean | 请求是否成功 |
-| `name` | string | 评论串所对应的页面地址 |
-| `locked` | boolean | 评论是否被锁定 |
-| `content` | array | 评论串内容 |
+| `success` | `boolean` | 请求是否成功 |
+| `name` | `string` | 评论串所对应的页面地址 |
+| `locked` | `boolean` | 评论是否被锁定 |
+| `content` | `array` | 评论串内容 |
 | `content[]/id` | `integer` | 评论在数据库中的 ID |
 | `content[]/name` | `string` 或 `null` | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言，同时 `website` 与 `email_hashed` 将始终是 `null`。 |
 | `content[]/website` | `string` 或 `null` | 评论者留下的个人主页地址 |
