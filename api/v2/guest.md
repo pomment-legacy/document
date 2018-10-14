@@ -33,6 +33,7 @@
 | `content[]/birth` | `string` | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
 | `content[]/content` | `string` | 评论内容 |
 | `content[]/by_admin` | `boolean` | 是否为管理员发布 |
+
 如果数据库中没有所对应的评论串，则返回 `content` 为空，`name` 为用户提交的 `url` 的值，`locked` 为 `false` 的返回值。
 
 ## 提交评论
