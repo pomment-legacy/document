@@ -3,23 +3,6 @@
 * 除非特别说明，所有 HTTP 请求均使用 POST。
 * 如果 `success` 为 `false`，则其它参数不会被返回。
 
-## 获取系统信息
-
-地址：`/`
-
-### 提交参数
-
-该 API 不需要提交参数。
-
-### 返回参数
-
-为 JSON 格式，具体信息如下：
-
-| 参数名 | 类型 | 说明 |
-| - | - | - |
-| `success` | `boolean` | 请求是否成功 |
-| `api_version` | `integer` | API 版本，返回 `2`。 |
-
 ## 列出评论
 
 地址：`/v2/list`
@@ -39,7 +22,7 @@
 | 参数名 | 类型 | 说明 |
 | - | - | - |
 | `success` | `boolean` | 请求是否成功 |
-| `name` | `string` | 评论串所对应的页面地址 |
+| `url` | `string` | 评论串所对应的页面地址 |
 | `locked` | `boolean` | 评论是否被锁定 |
 | `content` | `array` | 评论串内容 |
 | `content[]/id` | `integer` | 评论在数据库中的 ID |
