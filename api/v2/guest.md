@@ -58,16 +58,14 @@
 
 | 参数名 | 类型 | 说明 |
 | - | - | - |
-| `coolDownTimeout` |  `integer` | 发布该评论后需要等待的冷却时间，长度为秒。<br>如果 API 服务端指定不需要冷却，值则为 0 及以下。 |
-| `content` |  `object` | 刚才提交的评论详情 |
-| `content/id` |  `integer` | 评论在数据库中的 ID |
-| `content/name` |  `string` 或 `null` | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言 |
-| `content/email` |  `string` | 评论者留下的电子邮箱地址 |
-| `content/website` |  `string` 或 `null` | 评论者留下的个人主页地址 |
-| `content/parent` |  `integer` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
-| `content/content` |  `string` | 评论内容 |
-| `content/editKey` |  `string` | 用于编辑或删除该评论的密钥 |
-| `content/createdAt` |  `string` | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
+| `id` |  `integer` | 评论在数据库中的 ID |
+| `name` |  `string` 或 `null` | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言 |
+| `email` |  `string` | 评论者留下的电子邮箱地址 |
+| `website` |  `string` 或 `null` | 评论者留下的个人主页地址 |
+| `parent` |  `integer` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
+| `content` |  `string` | 评论内容 |
+| `editKey` |  `string` | 用于编辑或删除该评论的密钥 |
+| `createdAt` |  `string` | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
 
 ## 编辑评论
 
