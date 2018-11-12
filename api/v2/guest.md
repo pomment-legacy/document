@@ -67,6 +67,7 @@
 | `content` |  `string` | 评论内容 |
 | `editKey` |  `string` | 用于编辑或删除该评论的密钥 |
 | `createdAt` |  `string` | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
+| `updatedAt` |  `string` | 评论最后编辑的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
 
 ## 编辑评论
 
