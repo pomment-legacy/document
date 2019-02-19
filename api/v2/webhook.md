@@ -18,7 +18,7 @@ Pomment 服务端提供 Webhook 支持，可以用于触发一些基于 Webhook 
 | 参数名 | 类型 | 说明 |
 | - | - | - |
 | `id` | `integer` | 评论在数据库中的 ID |
-| `name` | `string` 或 `null` | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言，同时 `website` 与 `email_hashed` 将始终是 `null` |
+| `name` | `string` 或 `null` | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言，同时 `website` 与 `email_hashed` 将始终是 `null` |
 | `email` | `string` | 评论作者的电子邮箱地址，用来展示 Gravatar 头像与接收提醒邮件（如果 `receiveEmail` 为 `true`） |
 | `website` | `string` 或 `null` | 评论者留下的个人主页地址 |
 | `parent` | `number` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
@@ -31,3 +31,42 @@ Pomment 服务端提供 Webhook 支持，可以用于触发一些基于 Webhook 
 | `updatedAt` | `integer` | 评论最后编辑的日期，如果没有被编辑过则与 `createdAt` 相等。以 Java 时间戳表示 |
 | `reCAPTCHAScore` | `float` 或 `null` | reCAPTCHA v3 的评分，范围从 0 到 1 |
 | `parentContent` | `object` 或 `null` | 其所回复的评论的信息，结构与上一层相同，除了没有 `parentContent` 值 |
+
+下面是一个例子：
+
+```json
+{
+    "event": "new_comment",
+    "url": "https://www.tcdw.net/post/demo/",
+    "title": "",
+    "content": {
+        "id": 4,
+        "name": "tcdw",
+        "email": "tcdw2011@gmail.com",
+        "website": "",
+        "parent": 3,
+        "content": "自言自语（",
+        "hidden": false,
+        "byAdmin": false,
+        "receiveEmail": false,
+        "editKey": "",
+        "createdAt": 1550576678570,
+        "updatedAt": 1550576678570,
+        "reCAPTCHAScore": 0.9,
+        "parentContent": {
+            "id": 3,
+            "name": "tcdw",
+            "email": "tcdw2011@gmail.com",
+            "website": "",
+            "parent": -1,
+            "content": "我们要避免重放攻击！",
+            "hidden": false,
+            "byAdmin": false,
+            "receiveEmail": false,
+            "editKey": "",
+            "createdAt": 1550576638843,
+            "updatedAt": 1550576638843
+        }
+    }
+}
+```
