@@ -30,7 +30,7 @@
 | `content[]/content` | `string` | 评论内容 |
 | `content[]/parent` | `number` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
 | `content[]/byAdmin` | `boolean` | 是否为管理员发布 |
-| `content[]/createdAt` | `string` | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
+| `content[]/createdAt` | `string` | 评论发布的日期。以 Java 时间戳表示 |
 | `content[]/emailHashed` | `string` 或 `null` | 评论者留下的电子邮箱地址的 MD5 散列。该值用于在评论列表中展示评论者的 [Gravatar](https://gravatar.com/) 头像 |
 
 如果数据库中没有所对应的评论串，则返回 `content` 为空，`name` 为用户提交的 `url` 的值，`locked` 为 `false` 的返回值。
@@ -51,7 +51,7 @@
 | `website` | `string` | 否 | 评论作者的个人主页。<br>匿名评论可以提交该参数，但个人主页地址将不会被公开输出。 | 64 |
 | `content` | `string` | 是 | 评论内容。 | 2048 |
 | `receiveEmail` | `boolean` | 是 | 是否在评论得到回复时接收电子邮件提醒。 | |
-| `responseKey` | `string` | 是 / 不允许 | reCAPTCHA v3 的验证结果密钥。<br>如果 API 服务端指定开启 reCAPTCHA v3 验证，则必须提交有效值；反之，不允许提交该参数。 | |
+| `responseKey` | `string` | 是 / 不需要 | reCAPTCHA v3 的验证结果密钥。<br>**如果** API 服务端指定开启 reCAPTCHA v3 验证，则必须提交有效值。 | |
 
 ### 返回参数
 
@@ -66,8 +66,8 @@
 | `parent` |  `integer` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
 | `content` |  `string` | 评论内容 |
 | `editKey` |  `string` | 用于编辑或删除该评论的密钥 |
-| `createdAt` |  `string` | 评论发布的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
-| `updatedAt` |  `string` | 评论最后编辑的日期。以 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示 |
+| `createdAt` |  `string` | 评论发布的日期。以 Java 时间戳表示 |
+| `updatedAt` |  `string` | 评论最后编辑的日期。以 Java 时间戳表示 |
 
 ## 编辑评论
 
