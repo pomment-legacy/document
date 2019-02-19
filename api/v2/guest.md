@@ -30,7 +30,8 @@
 | `content[]/content` | `string` | 评论内容 |
 | `content[]/parent` | `number` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
 | `content[]/byAdmin` | `boolean` | 是否为管理员发布 |
-| `content[]/createdAt` | `string` | 评论发布的日期。以 Java 时间戳表示 |
+| `content[]/createdAt` | `integer` | 评论发布的日期。以 Java 时间戳表示 |
+| `content[]/updatedAt` | `integer` | 评论最后编辑的日期，如果没有被编辑过则与 `createdAt` 相等。以 Java 时间戳表示 |
 | `content[]/emailHashed` | `string` 或 `null` | 评论者留下的电子邮箱地址的 MD5 散列。该值用于在评论列表中展示评论者的 [Gravatar](https://gravatar.com/) 头像 |
 
 如果数据库中没有所对应的评论串，则返回 `content` 为空，`name` 为用户提交的 `url` 的值，`locked` 为 `false` 的返回值。
@@ -66,8 +67,8 @@
 | `parent` |  `integer` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
 | `content` |  `string` | 评论内容 |
 | `editKey` |  `string` | 用于编辑或删除该评论的密钥 |
-| `createdAt` |  `string` | 评论发布的日期。以 Java 时间戳表示 |
-| `updatedAt` |  `string` | 评论最后编辑的日期。以 Java 时间戳表示 |
+| `createdAt` |  `integer` | 评论发布的日期。以 Java 时间戳表示 |
+| `updatedAt` |  `integer` | 评论最后编辑的日期。以 Java 时间戳表示 |
 
 ## 编辑评论
 
