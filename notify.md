@@ -26,5 +26,7 @@ SMTP 相关的配置方法，请查看 这里。
 * `content`：回复者填写的内容。本变量的所有换行符会被转义成 HTML 的 `<br>` 标签
 * `unsubscriber`：退订链接（`/unsubscribe/:thread/:id/:editKey`）
 
+### 注意
+
 * 在邮件正文中，相应变量的内容均会被转义。
 * 邮件退订链接是相对路径。实际使用时，需要在前面跟上你的评论服务器的地址（不包含结尾的斜杠）。如 `<a href="https://example.com{{unsubscriber}}" target="_blank">`
