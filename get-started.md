@@ -62,4 +62,31 @@ pomment-server 你的目录名称
 
 此时的 Pomment 是在前台运行的。如果需要在后台持续运行，我们建议你通过 pm2、supervisor 等工具使其持续运行。
 
-（TBD：添加对应的页面链接）
+### 设置反代服务
+
+Pomment 使用 Node.js 的 http 模块来提供 web 服务。如果需要在实际生产环境中使用，则需要反向代理。
+
+以 nginx 为例：
+
+```nginx
+server {
+    listen 80;
+    server_name comment.example.com;
+    location / {
+        # 你的 Pomment 服务端的 host 和 port
+        proxy_pass          http://127.0.0.1:4600;
+        proxy_redirect      off;
+        proxy_set_header    Host            $host;
+        proxy_set_header    X-Real-IP       $remote_addr;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    Range           $http_range;
+        proxy_set_header    If-Range        $http_if_range;
+
+        # 如果你的 Pomment 服务端站点和主站点不在一个域名上，请务必设置 Access-Control-Allow-Origin 值为主站点地址，否则 AJAX 将不会工作！
+        add_header          'Access-Control-Allow-Origin' 'https://example.com';
+        add_header          'Access-Control-Allow-Credentials' "true";
+        add_header          'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE';
+        add_header          'Access-Control-Allow-Headers' 'reqid, nid, host, x-real-ip, x-forwarded-ip, event-type, event-id, accept, content-type';
+    }
+}
+```
