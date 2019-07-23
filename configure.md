@@ -13,7 +13,6 @@ Pomment 的配置文件存放在数据文件夹下的 `config.json`。你可以�
 | - | - | - | - |
 | `apiHost` | 服务端使用的域名 | string | `127.0.0.1` |
 | `apiPort` | 服务端使用的 IP 地址 | number | `5005` |
-| `underProxy` | 服务端是否在反代服务器下运行。设置正确的目的是为了在日志中显示正确的评论者 IP 地址 | boolean | `false` |
 
 ### 管理员信息 (Admin)
 

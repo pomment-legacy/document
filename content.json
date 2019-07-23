@@ -1,11 +1,12 @@
 {
     "简介": {
-        "Pomment 是什么？": "README",
+        "Pomment 是什么？": "intro",
         "更新日志": "changelog",
         "常见问题": "faq"
     },
     "安装和配置": {
-        "快速上手": "get-started"
+        "快速上手": "get-started",
+        "配置 Pomment": "configure"
     },
     "功能介绍": {
         "消息提醒": "notify",

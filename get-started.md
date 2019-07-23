@@ -36,7 +36,7 @@ npm install -g pomment-backend
 
 如果安装成功，你应该会看到类似这样的输出：
 
-```
+```none
 /usr/local/bin/pomment-init -> /home/pomment/n/lib/node_modules/pomment-backend/bin/pomment-init
 /usr/local/bin/pomment-config -> /home/pomment/n/lib/node_modules/pomment-backend/bin/pomment-config
 /usr/local/bin/pomment-server -> /home/pomment/n/lib/node_modules/pomment-backend/bin/pomment-server
@@ -51,6 +51,8 @@ added 160 packages from 151 contributors in 23.45s
 假如你在你的 `$HOME` 下，执行 `pomment-init data`，将会在 `/home/pomment/data` 下创建数据文件夹结构。
 
 初始化完成以后，**如果使用的是交互式 shell**，程序会自动切换到基于 whiptail 或 dialog（视系统安装了哪一种而定）的设置界面，你可以在该菜单中调整你需要修改的参数（非交互式 shell 则将只生成配置文件）。如果以后需要重新调整配置，直接执行 `pomment-config 你的目录名称` 即可。
+
+你也可以直接 [使用文本编辑器编辑](#!doc/configure) `config.json` 来完成对 Pomment 的配置。
 
 ### 启动 Pomment
 
@@ -70,8 +72,10 @@ Pomment 使用 Node.js 的 http 模块来提供 web 服务。如果需要在实�
 
 ```nginx
 server {
-    listen 80;
+    listen [::]:443 ssl http2;
+    listen 443 ssl http2;
     server_name comment.example.com;
+    # SSL 相关的设置 blah blah ...
     location / {
         # 你的 Pomment 服务端的 host 和 port
         proxy_pass          http://127.0.0.1:4600;
@@ -82,7 +86,7 @@ server {
         proxy_set_header    Range           $http_range;
         proxy_set_header    If-Range        $http_if_range;
 
-        # 如果你的 Pomment 服务端站点和主站点不在一个域名上，请务必设置 Access-Control-Allow-Origin 值为主站点地址，否则 AJAX 将不会工作！
+        # 请务必设置 Access-Control-Allow-Origin 值为主站点地址，否则 AJAX 将不会工作！
         add_header          'Access-Control-Allow-Origin' 'https://example.com';
         add_header          'Access-Control-Allow-Credentials' "true";
         add_header          'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE';
@@ -90,3 +94,8 @@ server {
     }
 }
 ```
+
+### 部署前端
+
+当你的服务端准备就绪以后，就可以开始部署前端了。对于大多数用户，我们建议直接使用官方前端。
+
