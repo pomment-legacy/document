@@ -11,5 +11,8 @@
     "功能介绍": {
         "消息提醒": "notify",
         "reCAPTCHA v3": "recaptcha"
+    },
+    "组件": {
+        "官方前端": "frontend"
     }
 }
