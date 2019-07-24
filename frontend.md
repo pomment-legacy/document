@@ -18,19 +18,19 @@
         npm run build
         ```
         编译好的 CSS 与 JS 将出现在 `dist` 目录下。
-    2. 在页面引用相应的 CSS 与 JS。
-    3. 在**相应引用的后面**添加以下代码：
-        ```html
-        <script>
-        var plugin = new PommentWidget({
-            // plugin 的设置。具体请见下面『配置项』一节。
-        });
-        plugin.$mount({
-            target: document.getElementById("main"), // 要将挂件插入到哪个元素中？
-        });
-        plugin.load();
-        </script>
-        ```
+2. 在页面引用相应的 CSS 与 JS。
+3. 在**相应引用的后面**添加以下代码：
+    ```html
+    <script>
+    var plugin = new PommentWidget({
+        // plugin 的设置。具体请见下面『配置项』一节。
+    });
+    plugin.$mount({
+        target: document.getElementById("main"), // 要将挂件插入到哪个元素中？
+    });
+    plugin.load();
+    </script>
+    ```
 
 ### 引用到其它 ef.js 项目中
 
