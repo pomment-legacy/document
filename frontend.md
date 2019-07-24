@@ -25,9 +25,11 @@
     var plugin = new PommentWidget({
         // plugin 的设置。具体请见下面『配置项』一节。
     });
+    // 将组件挂载到需要的元素内
     plugin.$mount({
         target: document.getElementById("main"), // 要将挂件插入到哪个元素中？
     });
+    // 载入 Pomment
     plugin.load();
     </script>
     ```
@@ -45,6 +47,9 @@ const plugin = new PommentWidget({
     // ...
 });
 someElement.comment = plugin;
+
+// 载入 Pomment
+plugin.load();
 ```
 
 ## 配置项
@@ -66,11 +71,3 @@ const plugin = new PommentWidget(props);
 | `avatarPrefix` | string | Gravatar 服务器地址，以 `/` 结尾。如 `https://secure.gravatar.com/avatar/` | 否 |
 | `reCAPTCHA` | string | reCAPTCHA v3 网站密钥。如果留空，则不启用 reCAPTCHA 模式 | 否 |
 | `showReceiveEmail` | boolean | 展示『发送邮件提醒』选项。如果设置隐藏，则访客提交的评论均默认为不展示 | 否 |
-
-## 编译
-
-```bash
-npm run build
-```
-
-编译得到的 css 与 js 将出现在 dist 目录下。
