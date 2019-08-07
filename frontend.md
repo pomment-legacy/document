@@ -9,30 +9,32 @@
 ### 直接引用到已有页面中
 
 1. 获取编译好的 Pomment 前端文件。
-    * 我们建议直接从 [jsDelivr](https://www.jsdelivr.com/package/npm/pomment-frontend?path=dist) 等服务引用它们，这样如果你的网站和其它网站同时引用了这个版本，访客访问两个站点时的加载速度将得到改善。
-    * 你也可以自行编译一份：
-        ```bash
-        git clone https://github.com/pomment/frontend pfbuild
-        cd pfbuild
-        npm install
-        npm run build
-        ```
-        编译好的 CSS 与 JS 将出现在 `dist` 目录下。
+
+我们建议直接从 [jsDelivr](https://www.jsdelivr.com/package/npm/pomment-frontend?path=dist) 等服务引用它们，这样如果你的网站和其它网站同时引用了这个版本，访客访问两个站点时的加载速度将得到改善。  
+你也可以自行编译一份：
+```bash
+git clone https://github.com/pomment/frontend pfbuild
+cd pfbuild
+npm install
+npm run build
+```
+编译好的 CSS 与 JS 将出现在 `dist` 目录下。
+
 2. 在页面引用相应的 CSS 与 JS。
 3. 在**相应引用的后面**添加以下代码：
-    ```html
-    <script>
-    var plugin = new PommentWidget({
-        // plugin 的设置。具体请见下面『配置项』一节。
-    });
-    // 将组件挂载到需要的元素内
-    plugin.$mount({
-        target: document.getElementById("main"), // 要将挂件插入到哪个元素中？
-    });
-    // 载入 Pomment
-    plugin.load();
-    </script>
-    ```
+```html
+<script>
+var plugin = new PommentWidget({
+    // plugin 的设置。具体请见下面『配置项』一节。
+});
+// 将组件挂载到需要的元素内
+plugin.$mount({
+    target: document.getElementById("main"), // 要将挂件插入到哪个元素中？
+});
+// 载入 Pomment
+plugin.load();
+</script>
+```
 
 ### 引用到其它 ef.js 项目中
 
