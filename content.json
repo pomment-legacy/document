@@ -14,5 +14,10 @@
     },
     "组件": {
         "官方前端": "frontend"
+    },
+    "API": {
+        "访客部分": "api/v2/guest",
+        "管理部分": "api/v2/manage",
+        "Webhook": "api/v2/webhook"
     }
 }
