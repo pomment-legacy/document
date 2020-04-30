@@ -26,14 +26,13 @@
 | `content` | `array` | 评论串内容 |
 | `content[]/id` | `integer` | 评论在数据库中的 ID |
 | `content[]/name` | `string` 或 `null` | 评论者的昵称。如果昵称为 `null`，则该用户进行了匿名发言，同时 `website` 与 `email_hashed` 将始终是 `null`。 |
+| `content[]/emailHashed` | `string` 或 `null` | 评论者留下的电子邮箱地址的 MD5 散列。该值用于在评论列表中展示评论者的 [Gravatar](https://gravatar.com/) 头像 |
 | `content[]/website` | `string` 或 `null` | 评论者留下的个人主页地址 |
-| `content[]/content` | `string` | 评论内容 |
+| `content[]/avatar` | `string` 或 `null` | 访客的头像 URL 地址。如果值不为 null，则优先展示该值指定的头像。这是一个**不允许**访客自行指定的值，该字段存在的目的是为了更好的处理**从其它评论系统导入的评论**所**附带**的访客头像。 |
 | `content[]/parent` | `number` | 该评论回复的已有的其它评论的 ID。如果没有回复已有的其它评论，则为 `-1` |
+| `content[]/content` | `string` | 评论内容 |
 | `content[]/byAdmin` | `boolean` | 是否为管理员发布 |
 | `content[]/createdAt` | `integer` | 评论发布的日期。以 Java 时间戳表示 |
-| `content[]/updatedAt` | `integer` | 评论最后编辑的日期，如果没有被编辑过则与 `createdAt` 相等。以 Java 时间戳表示 |
-| `content[]/emailHashed` | `string` 或 `null` | 评论者留下的电子邮箱地址的 MD5 散列。该值用于在评论列表中展示评论者的 [Gravatar](https://gravatar.com/) 头像 |
-| `content[]/avatar` | `string` 或 `null` | 访客的头像 URL 地址。如果值不为 null，则优先展示该值指定的头像。这是一个**不允许**访客自行指定的值，该字段存在的目的是为了更好的处理**从其它评论系统导入的评论**所**附带**的访客头像。 |
 | `content[]/edited` | `boolean` | 评论是否在发布后被编辑过 |
 
 如果数据库中没有所对应的评论串，则返回 `content` 为空，`name` 为用户提交的 `url` 的值，`locked` 为 `false` 的返回值。
