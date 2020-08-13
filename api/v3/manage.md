@@ -44,6 +44,24 @@
 | `amount` | `number` | 评论数量 |
 | `latestPostAt` | `number` | 最后更新时间。以 Java 时间戳表示 |
 
+## 编辑评论串标题
+
+地址：`/v3/manage/edit-title`
+
+### 提交参数
+
+为 JSON 格式，具体信息如下：
+
+| 参数名 | 类型 | 必需 | 说明 |
+| - | - | - | - |
+| `auth` | `Auth` | 是 | 详见 [认证](#认证) 一节 |
+| `url` | `string` | 是 | 评论串所对应的页面地址 |
+| `title` | `string` | 评论串的标题 |
+
+### 返回参数
+
+无。
+
 ## 锁定评论串
 
 地址：`/v3/manage/lock`
@@ -140,7 +158,9 @@
 
 ## 回复评论
 
-地址：`/v3/submit`
+地址：`/v3/manage/submit`
+
+### 提交参数
 
 为 JSON 格式，具体信息如下：
 
@@ -173,3 +193,27 @@
 | `origContent` | `string` | 最初版本的评论内容 |
 | `avatar` | `null` | |
 | `rating` | `null` | |
+
+## 编辑评论
+
+地址：`/v3/manage/edit`
+
+### 提交参数
+
+为 JSON 格式，具体信息如下：
+
+| 参数名 | 类型 | 必需 | 说明 |
+| - | - | - | - |
+| `auth` | `Auth` | 是 | 详见 [认证](#认证) 一节 |
+| `url` | `string` | 是 | 评论串所对应的页面地址 |
+| `id` | `number` | 是 | 评论 ID |
+| `name` | `string` | 是 | 昵称 |
+| `email` | `string` | 是 | 电子邮箱地址 |
+| `website` | `string` | 是 | 个人主页地址 |
+| `avatar` | `string` | 是 | 头像 URL 地址。如果值不为 null，则在访客一端优先展示该值指定的头像。<br>这是一个**不允许**访客自行指定的值，该字段存在的目的是为了更好的处理**从其它评论系统导入的评论**所**附带**的访客头像。 |
+| `content` | `string` | 是 | 评论内容 |
+| `hidden` | `boolean` | 是 | 是否被隐藏 |
+
+### 返回参数
+
+无。
