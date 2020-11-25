@@ -14,9 +14,9 @@ Pomment 是一种『刚好够用』的静态博客评论框解决方案。
 
 ### 支持 Gravatar 头像
 
-Pomment 提供原生的 Gravatar 支持，访客只需输入正确的邮箱地址，即可显示出自己的头像。
+Pomment 提供原生的 [Gravatar](https://en.gravatar.com/) 支持，访客只需输入正确的邮箱地址，即可显示出自己的头像。
 
-网站管理者亦可使用 Libravatar 或其它头像托管服务，只要其兼容 Gravatar 的 URL 格式。
+网站管理者亦可使用 [Libravatar](https://www.libravatar.org/) 等其它头像托管服务，只要其兼容 Gravatar 的 URL 格式。
 
 ### 支持留下自己的个人主页地址
 
@@ -24,7 +24,11 @@ Pomment 提供原生的 Gravatar 支持，访客只需输入正确的邮箱地�
 
 ### 邮件通知
 
-只要访客勾选『接收邮件提醒』，当有其它人回复评论时，系统会通过 SMTP 或自定义邮件提供者发送邮件提醒；如果不希望接收邮件提醒，也可以通过邮件内的退订链接取消接收。
+只要访客勾选『接收邮件提醒』，当有其它人回复评论时，系统会通过 SMTP 或 Mailgun API 发送邮件提醒；如果不希望接收邮件提醒，也可以通过邮件内的退订链接取消接收。
+
+### reCAPTCHA v3 支持
+
+Pomment 拥有内置 [reCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3) 支持。该功能可自主选择开启或关闭，只需填入申请好的 reCAPTCHA Key，即可正常工作。
 
 ### 方便的数据导入 / 导出
 

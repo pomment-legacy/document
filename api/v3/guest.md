@@ -70,36 +70,3 @@
 | `editKey` |  `string` | 用于编辑或删除该评论的密钥 |
 | `createdAt` |  `integer` | 评论发布的日期。以 Java 时间戳表示 |
 | `updatedAt` |  `integer` | 评论最后编辑的日期。以 Java 时间戳表示 |
-
-## 编辑评论
-
-地址：`/v3/edit`
-
-为 JSON 格式，具体信息如下：
-
-| 参数名 | 类型 | 必需 | 说明 | 最大 UTF-8 字节数 |
-| - | - | - | - | - |
-| `url` | `string` | 是 | 要修改的评论所在的文章的 URL | |
-| `uuid` | `integer` | 是 | 要修改的评论的 UUID | |
-| `editKey` | `string` | 是 | 评论的修改 / 删除密钥 | |
-| `content` | `string` | 是 | 评论内容 | 2048 |
-
-### 返回参数
-
-HTTP 状态码为 200 的空白内容。
-
-## 删除评论
-
-地址：`/v3/delete`
-
-为 JSON 格式，具体信息如下：
-
-| 参数名 | 类型 | 必需 | 说明 |
-| - | - | - | - |
-| `url` | `string` | 是 | 要删除的评论所在的文章的 URL |
-| `uuid` | `integer` | 是 | 要删除的评论的 UUID |
-| `token` | `string` | 是 | 评论的修改 / 删除密钥 |
-
-### 返回参数
-
-HTTP 状态码为 200 的空白内容。

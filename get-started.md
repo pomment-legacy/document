@@ -1,6 +1,6 @@
 # 部署
 
-如果需要使用 Pomment 评论系统，首先需要部署服务端。我们以 Ubuntu 18.04 LTS 为例，讲解部署过程。
+如果需要使用 Pomment 评论系统，首先需要部署服务端。我们以 Ubuntu 20.04 LTS 为例，讲解部署过程。
 
 ## 过程
 
@@ -34,15 +34,7 @@ n 与通过 n 安装的 Node.js 均属于用户态应用，因此你不需要担
 npm install -g pomment-backend
 ```
 
-如果安装成功，你应该会看到类似这样的输出：
-
-```none
-/usr/local/bin/pomment-init -> /home/pomment/n/lib/node_modules/pomment-backend/bin/pomment-init
-/usr/local/bin/pomment-config -> /home/pomment/n/lib/node_modules/pomment-backend/bin/pomment-config
-/usr/local/bin/pomment-server -> /home/pomment/n/lib/node_modules/pomment-backend/bin/pomment-server
-+ pomment-backend@2.2.7
-added 160 packages from 151 contributors in 23.45s
-```
+如果安装成功，你应该不会看到任何错误消息。
 
 ### 配置 Pomment
 
@@ -50,9 +42,7 @@ added 160 packages from 151 contributors in 23.45s
 
 假如你在你的 `$HOME` 下，执行 `pomment-init data`，将会在 `/home/pomment/data` 下创建数据文件夹结构。
 
-初始化完成以后，**如果使用的是交互式 shell**，程序会自动切换到基于 whiptail 或 dialog（视系统安装了哪一种而定）的设置界面，你可以在该菜单中调整你需要修改的参数（非交互式 shell 则将只生成配置文件）。如果以后需要重新调整配置，直接执行 `pomment-config 你的目录名称` 即可。
-
-你也可以直接 [使用文本编辑器编辑](#!doc/configure) `config.json` 来完成对 Pomment 的配置。
+你可以直接 [使用文本编辑器编辑](#!doc/configure) `config.yaml` 来完成对 Pomment 的配置。
 
 ### 启动 Pomment
 
@@ -78,7 +68,7 @@ server {
     # SSL 相关的设置 blah blah ...
     location / {
         # 你的 Pomment 服务端的 host 和 port
-        proxy_pass          http://127.0.0.1:4600;
+        proxy_pass          http://127.0.0.1:8080;
         proxy_redirect      off;
         proxy_set_header    Host            $host;
         proxy_set_header    X-Real-IP       $remote_addr;
@@ -97,5 +87,5 @@ server {
 
 ### 部署前端
 
-当你的服务端准备就绪以后，就可以开始部署前端了。对于大多数用户，我们建议 [直接使用官方前端](#!doc/frontend)。
+当你的服务端准备就绪以后，就可以开始部署前端了。你可以自己基于 Pomment API 设计一套前端，或 [直接使用官方前端](#!doc/frontend)。
 
