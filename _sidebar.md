@@ -11,6 +11,4 @@
 - 组件
   - [官方前端](frontend.md)
 - API
-  - [访客部分](api/v3/guest.md)
-  - [管理部分](api/v3/manage.md)
-  - [Webhook](api/v3/webhook.md)
+  - [HTTP API](api/v4.md)
